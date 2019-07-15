@@ -1,5 +1,5 @@
 {
-    "name": "petrnemec/nette-apns",
+    "name": "developers-iplato/nette-apns",
     "description": "Apple Push Notification Service for Nette Framework",
     "type": "library",
     "keywords": ["nette", "apns", "push", "notification", "apple"],
