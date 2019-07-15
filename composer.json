@@ -1,0 +1,22 @@
+{
+    "name": "petrnemec/nette-apns",
+    "description": "Apple Push Notification Service for Nette Framework",
+    "type": "library",
+    "keywords": ["nette", "apns", "push", "notification", "apple"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Petr Nemec"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Nemec\\Apns\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "nette/di": ">=2.2",
+        "zendframework/zendservice-apple-apns": "1.*"
+    }
+}
