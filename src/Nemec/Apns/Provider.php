@@ -2,6 +2,8 @@
 
 namespace Nemec\Apns;
 
+use Nette\Caching\Cache;
+use Nette\Caching\Storages\FileStorage;
 use ZendService\Apple\Apns\Client\Message as Client;
 use ZendService\Apple\Apns\Message as ApnsMessage;
 use ZendService\Apple\Apns\Response\Message as MessageResponse;
@@ -12,6 +14,8 @@ class Provider extends Client {
     protected $environment = self::SANDBOX_URI;
     protected $certificate;
     protected $passPhrase;
+
+    protected $cache;
     
     /**
      * @param int $environment
@@ -22,6 +26,9 @@ class Provider extends Client {
         $this->environment = $environment;
         $this->certificate = $certificate;
         $this->passPhrase = $passPhrase;
+
+        $cacheStorage = new FileStorage('temp/apns');
+        $this->cache = new Cache($cacheStorage);
     }
     
     /**
@@ -30,6 +37,15 @@ class Provider extends Client {
      * @throws Exception\RuntimeException
      */
     public function send(ApnsMessage $message) {
+        $lastNotifTimestamp = $this->cache->load('lastNotification');
+        $limitDateTime = new \DateTime();
+        $limitDateTime->modify('-3 HOUR');
+
+        if ($lastNotifTimestamp < $limitDateTime->getTimestamp()) {
+            $this->close();
+            $this->open();
+        }
+
         if (!$this->isConnected()) {
             $this->open($this->environment, $this->certificate, $this->passPhrase);
         }
@@ -41,6 +57,9 @@ class Provider extends Client {
         if ($ret === 0) {
             throw new Exception\RuntimeException('Server is unavailable; broken pipe or closed connection');
         }
+
+        $notificationTime = new \DateTime();
+        $this->cache->save('lastNotification', $notificationTime->getTimestamp());
 
         return new MessageResponse($this->read());
     }
