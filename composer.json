@@ -19,7 +19,6 @@
         "nette/di": ">=2.2",
         "developers-iplato/zendservice-apple-apns": "*@dev"
     },
-    "minimum-stability": "dev",
     "repositories": [
         {
             "type": "git",
