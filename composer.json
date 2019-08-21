@@ -17,8 +17,9 @@
     "require": {
         "php": ">=5.3.3",
         "nette/di": ">=2.2",
-        "developers-iplato/zendservice-apple-apns": "*"
+        "developers-iplato/zendservice-apple-apns": "*@dev"
     },
+    "minimum-stability": "dev",
     "repositories": [
         {
             "type": "git",
