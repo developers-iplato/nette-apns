@@ -37,5 +37,10 @@ class Feedback extends Client {
 
         return $tokens;
     }
+
+    public function reconnect() {
+        $this->close();
+        $this->open($this->environment, $this->certificate, $this->passPhrase);
+    }
     
 }
