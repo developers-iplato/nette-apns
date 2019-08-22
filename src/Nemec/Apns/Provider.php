@@ -2,8 +2,6 @@
 
 namespace Nemec\Apns;
 
-use Nette\Caching\Cache;
-use Nette\Caching\Storages\FileStorage;
 use ZendService\Apple\Apns\Client\Message as Client;
 use ZendService\Apple\Apns\Message as ApnsMessage;
 use ZendService\Apple\Apns\Response\Message as MessageResponse;
