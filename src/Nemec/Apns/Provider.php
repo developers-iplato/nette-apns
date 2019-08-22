@@ -12,8 +12,6 @@ class Provider extends Client {
     protected $environment = self::SANDBOX_URI;
     protected $certificate;
     protected $passPhrase;
-
-    protected $cache;
     
     /**
      * @param int $environment
