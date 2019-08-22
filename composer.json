@@ -17,8 +17,7 @@
     "require": {
         "php": ">=5.3.3",
         "nette/di": ">=2.2",
-        "developers-iplato/zendservice-apple-apns": "@dev",
-        "nette/caching": "v2.4.x-dev"
+        "developers-iplato/zendservice-apple-apns": "@dev"
     },
     "repositories": [
         {
