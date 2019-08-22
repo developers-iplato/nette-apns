@@ -44,5 +44,9 @@ class Provider extends Client {
 
         return new MessageResponse($this->read());
     }
-    
+
+    public function reconnect() {
+        $this->close();
+        $this->open($this->environment, $this->certificate, $this->passPhrase);
+    }
 }
